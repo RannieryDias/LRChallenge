@@ -8,7 +8,7 @@
 ## To-do
 
  - [x] Finish imported products case
- - [ ] Finish exempt products case
+ - [x] Finish exempt products case
  - [ ] View module with Swing API
  - [ ] Exceptions
 
