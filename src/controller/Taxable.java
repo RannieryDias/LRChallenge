@@ -1,17 +1,18 @@
 package controller;
 
 import constant.Constants;
-import interfaces.IProducts;
+import interfaces.Product;
 
-public class Taxable implements IProducts {
+public class Taxable implements Product {
 
 	private double price;
 	private String name;
 	private String category;
 	private int amount;
+	private boolean isImported;
 	
 	@Override
-	public IProducts applyTaxes() {
+	public Product applyTaxes() {
 		double total = this.getPrice() + this.sumTaxes();
 		
 		this.setPrice(total);
@@ -31,16 +32,13 @@ public class Taxable implements IProducts {
 	}
 	
 	private double calculateImportTax() {
-		if (this.isImported()) {
+		if (this.isImported == true) {
 			return this.getPrice() * Constants.IMPORT_TAX;			
 		}
 		
 		return 0.0;
 	}
 	
-	public boolean isImported() {
-		return this.getName().contains(Constants.IMPORTED_KEYWORD);
-	}
 	
 	public double sumTotal() {
 		return this.getPrice() * this.getAmount();
@@ -99,11 +97,20 @@ public class Taxable implements IProducts {
 	}
 	
 	@Override
-	public void setAmount(int amount) {
-		
-		int validate = verifyValue(amount);
+	public void setAmount(int amount) {	
 		//TODO SET EXCEPTION
 		this.amount = amount;
+	}
+
+	@Override
+	public void setIsImported(boolean isImported) {
+		//TODO SET EXCEPTION
+		this.isImported = isImported;
+	}
+
+	@Override
+	public boolean getIsImported() {
+		return isImported;
 	}
 
 }

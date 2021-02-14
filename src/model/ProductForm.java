@@ -59,16 +59,13 @@ public class ProductForm {
 	}
 
 
-	public boolean isImported() {
+	public boolean getIsImported() {
 		return isImported;
 	}
 
 
-	public void setImported(boolean isImported) {
+	public void setIsImported(boolean isImported) {
 		this.isImported = isImported;
 	}
 	
-//	public String toString() {
-//		return 
-//	}
 }

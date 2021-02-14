@@ -1,7 +1,7 @@
 package interfaces;
 
-public interface IProducts {
-	public IProducts applyTaxes();
+public interface Product {
+	public Product applyTaxes();
 	public double sumTaxes();
 	
 	public double getPrice();
@@ -15,6 +15,9 @@ public interface IProducts {
 	
 	public void setCategory(String category);
 	public String getCategory();
+	
+	public void setIsImported(boolean isImported);
+	public boolean getIsImported(); 
 	
 	public double sumTotal();
 }

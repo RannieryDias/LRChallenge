@@ -2,15 +2,15 @@ package model;
 
 import java.util.List;
 
-import interfaces.IProducts;
+import interfaces.Product;
 
 public class Receipt {
 	private double saleTax;
 	private double total;
-	private List<IProducts> products;
+	private List<Product> products;
 	
 	//constructor
-	public Receipt(double tax, double total, List<IProducts> products) {
+	public Receipt(double tax, double total, List<Product> products) {
 		this.saleTax = tax;
 		this.total = total;
 		this.products = products;
@@ -39,11 +39,11 @@ public class Receipt {
 		}
 	}
 
-	public List<IProducts> getProducts() {
+	public List<Product> getProducts() {
 		return products;
 	}
 	
-	public void setProducts(List<IProducts> products) {
+	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
 }

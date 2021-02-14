@@ -1,41 +1,41 @@
 package model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import constant.NonTaxable;
+import controller.ExemptProduct;
 import controller.Taxable;
-import interfaces.IProducts;
+import interfaces.Product;
 
 public class ParserService {
-	private Map<String, IProducts> products;
-	
-	public List<IProducts> parseProducts(List<ProductForm> forms) {
-		return forms
-				.stream()
-				.map(form -> this.getProductFromForm(form))
-				.collect(Collectors.toList());
+
+	public List<Product> parseProducts(List<ProductForm> forms) {
+		return forms.stream().map(form -> this.getProductFromForm(form)).collect(Collectors.toList());
 	}
-	
-	private IProducts getProductFromForm(ProductForm form) {
-		IProducts product = products.get(form.getCategory().toUpperCase());
-		
-		if (NonTaxable.contains(product.getCategory()) == false) {
-			product = getDefaultProductService();
-		}
+
+	private Product getProductFromForm(ProductForm form) {
+		Product product = getProductInstance(form.getCategory().toUpperCase());
 
 		product.setPrice(form.getPrice());
 		product.setName(form.getName());
 		product.setAmount(form.getAmount());
 		product.setCategory(form.getCategory());
-		
+		product.setIsImported(form.getIsImported());
+
 		return product;
 	}
 
+	private Product getProductInstance(String category) {
+		Product product;
+		System.out.println(category);
+		if (NonTaxable.contains(category)) {
+			System.out.println("Instanciou isento");
+			product = new ExemptProduct();
+		} else {
+			product = new Taxable();
+		}
 
-
-	private IProducts getDefaultProductService() {
-		return new Taxable();
+		return product;
 	}
 }

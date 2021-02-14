@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import constant.Constants;
-import interfaces.IProducts;
+import interfaces.Product;
 
 public class ReceiptService {
 	
@@ -12,8 +12,8 @@ public class ReceiptService {
 	
 	//Method that generate the receipt from a list of products
 	public Receipt generateReceipt(List<ProductForm> forms) {
-		List<IProducts> products = this.parser.parseProducts(forms);
-		
+		List<Product> products = this.parser.parseProducts(forms);
+
 		double taxesPaid = this.getTotalProductTaxes(products);
 		
 		products = this.applyTaxes(products);
@@ -23,7 +23,7 @@ public class ReceiptService {
 		return new Receipt(taxesPaid, totalPrice, products);
 	}
 	
-	private double getTotalProductTaxes(List<IProducts> products) {		
+	private double getTotalProductTaxes(List<Product> products) {		
 		double total = products
 				/*converte tipo stream*/.stream()
 				/*mapeia uma coleção em outra*/.mapToDouble(product -> product.sumTaxes())
@@ -32,14 +32,14 @@ public class ReceiptService {
 		return Constants.round(total);
 	}
 	
-	private List<IProducts> applyTaxes(List<IProducts> products) {
+	private List<Product> applyTaxes(List<Product> products) {
 		return products
 				.stream()
 				.map(product -> product.applyTaxes())
 				.collect(Collectors.toList());
 	}
 	
-	private double getTotal(List<IProducts> products) {
+	private double getTotal(List<Product> products) {
 		double total = products
 				.stream()
 				.mapToDouble(product -> product.sumTotal())

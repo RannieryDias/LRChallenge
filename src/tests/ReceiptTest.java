@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import model.ProductForm;
@@ -15,11 +14,26 @@ import model.ReceiptService;
 
 class ReceiptTest{
 	
-	private ReceiptService service;
+	private ReceiptService service = new ReceiptService();
 	
-	@BeforeEach
-	public void setup() {
-		this.service = new ReceiptService();
+	@Test
+	void testBooksFoodAndDrugsShouldNotBeTaxed() {
+		List<ProductForm> products = this.getListOfExemptProducts();
+		
+		Receipt receipt = this.service.generateReceipt(products);
+		
+		assertEquals(0.0, receipt.getSaleTax());
+		assertEquals(70.0, receipt.getTotal());
+	}
+	
+	@Test
+	void testNonExemptProductsShouldBeTaxedAt10Percent() {
+		List<ProductForm> products = this.getListOfNonExemptProducts();
+		
+		Receipt receipt = this.service.generateReceipt(products);
+		
+		assertEquals(3.4, receipt.getSaleTax());
+		assertEquals(37.4, receipt.getTotal());
 	}
 	
 	@Test
