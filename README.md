@@ -39,7 +39,7 @@ The project has a particular directory structure. A representative project is sh
 
 ## How to run it
 
-The project is Test-oriented, to run it, you'll have to use an IDE,  i highly recomend [Eclipse IDE](https://www.eclipse.org/downloads/)
+The project is Test-oriented, to run it, you'll have to use an IDE,  I highly recomend [Eclipse IDE](https://www.eclipse.org/downloads/)
 - To run it, open the project with your IDE
 - Open the project
 - Then run the ReceiptTest.java
