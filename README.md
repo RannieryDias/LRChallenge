@@ -27,11 +27,8 @@ The project has a particular directory structure. A representative project is sh
 ```
 ## Packages
 
-You can delete the current file by clicking the **Remove** button in the file explorer. The file will be moved into the **Trash** folder and automatically deleted after 7 days of inactivity.
-## packages
-
 -   `constant` —  to hold our constants;
-    
+   
 -   `controller`  — to listen to the client;
     
 -   `exception`  —  to give feedback of errors to the client;
@@ -39,3 +36,10 @@ You can delete the current file by clicking the **Remove** button in the file ex
 -   `model` —     to  hold our entities and business logic;
 -   `tests`  —  contains unit tests;
 -   `view` —  to interface with the client;
+
+## How to run it
+
+The project is Test-oriented, to run it you'll have use an IDE,  i highly recomend [Eclipse IDE](https://www.eclipse.org/downloads/)
+- To run it, open the project with your IDE
+- Open the project
+- Then run the ReceiptTest.java
